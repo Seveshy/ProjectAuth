@@ -1,0 +1,4 @@
+export const settingsActions ={
+  UPDATE_TABLE :'UPDATE_TABLE',
+  UPDATE_COUNT_REGISTER:'UPDATE_COUNT_REGISTER'
+}
