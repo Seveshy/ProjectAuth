@@ -1,17 +1,33 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import Login from "../pages/Login";
 import Settings from "../pages/Settings";
 import PrivateRoute from "./privateRoutes";
+import Relatorio from "../pages/Relatorio"
+import { isAuthenticated } from "../services/auth";
 
 
 
 const Routes = () => {
+
+  const history = useHistory();
+  if (
+    (history.location.pathname == "/login" ||
+      history.location.pathname == "/") &&
+
+    isAuthenticated()
+  ) {
+    history.push("config");
+  }
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="skytefhub">
       <Switch>
-        <Route exact path="/login" component={() => <Login/>} />
-        <PrivateRoute path="/config" component={() => <Settings/>}/>
+        <Route path="/" exact component={Login} />
+        <Route path="/login" component={Login} />
+
+        <PrivateRoute path="/config" component={() => <Settings />} />
+        <PrivateRoute path="/relatorio" component={() => <Relatorio />} />
       </Switch>
     </BrowserRouter>
   );

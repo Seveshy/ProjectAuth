@@ -1,54 +1,20 @@
 import styled, {css} from "styled-components";
-import { AiFillSetting } from "react-icons/ai";
+
+import {
+  EditAlt, CancelIcon
+} from '../../styles/Icons';
 
 export const Container = styled.div`
-background-color:var(--gray-light-color);
-display:flex;
-flex-direction: column;
 
+  display: grid;
+   grid-template-columns:250px  auto;
+
+   grid-template-areas:
+   
+    'SM CONTENT';
 height: 100%;
-
-      
-    
-`;
-export const Content = styled.div`
-     
-margin: 0px 20px;
-     justify-self: center;
-     
-`;
-export const Register = styled.div`
-     background-color:white;
-     padding:20px;
-     margin:15px;
-`;
-export const ContentTitle = styled.div`
-     
-     
-`;
-export const ContentBody = styled.div`
-     
-     
-`;
-export const EditIcon = styled.div`
-     
-     
 `;
 
-
-export const Title = styled.div`
-     
-     
-`;
-export const Header = styled.div`
-display:flex;
-margin:20px;
-h1{
-  margin-left:5px;
-  color:var(--gray-font-color)
-}
-     
-`;
 const iconCSS = css`
 
   cursor:pointer;
@@ -59,26 +25,6 @@ const iconCSS = css`
     background-color:var(--mascara);
   }
 `;
-export const CompanyIcon =  styled(AiFillSetting)`
-width: 40px;
-height: 40px;
-color:var(--gray-font-color)
-`;
-
-
-export const Wrapper = styled.div`
-margin-top:20px;
-
-  display: grid;
-   grid-template-columns:250px  auto;
-
-   grid-template-areas:
-   
-    'SM CONTENT';
-     height: 100%;
-`;
-
-
 
 
 
@@ -96,33 +42,17 @@ export const HeaderDetail   = styled.div`
 `;
 
 export const SideMenu = styled.div`
+ padding-top:40px;
   grid-area: SM;
   display:flex;
-  text-align:left;
+  text-align:center;
   height:100%;
-  background-image: linear-gradient(
-    136deg,
-    var(--azul-skytef) 0%,
-    var(--verde-skytef) 100%
-  );
-
-.ativo{
-  cursor:pointer;
-  color: var(--white);
-  text-decoration:none;
-  font-size:16px;
-  font-weight:lighter;
-  width:250px;
-  padding:20px;
-  font-weight:bold;
-  background-color: var(--mascara);
-}
-
+  background-color:var(--hover-light-shadow);
   .links{
-   cursor:pointer;
+   
     color: var(--white);
     text-decoration:none;
-    font-size:16px;
+    font-size:18px;
     font-weight:lighter;
     width:250px;
     padding:20px;
@@ -132,15 +62,15 @@ export const SideMenu = styled.div`
     
   }
   li:hover{
-    cursor:pointer;
-
+    text-align:center;
+    align-self:center;
+    justify-self:center;
     font-weight:bold;
     background-color: var(--mascara);
   }
   .links:hover{
-    font-size:16px;
-    cursor:pointer;
-
+    font-size:20px;
+    
    
   }
 
@@ -148,9 +78,10 @@ export const SideMenu = styled.div`
 export const Line = styled.div`
   width:auto;
   height:0.1px;
-  background-color:var(--mascara);
+  background-color: #d9d7d7;
 `;
-export const ContentWrapper = styled.div`
+export const Content = styled.div`
+  padding:10px 40px ;
   box-shadow: 1px 2px 2px 1px var(--border);
   grid-area: CONTENT;
   display:flex;

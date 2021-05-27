@@ -1,44 +1,111 @@
-import React, { useState } from "react";
-import { Container, ButtonSingIn, InputText, ForgetPwd } from "./styles";
-import api from "../../services/api";
-import {login} from'../../services/auth'
+import { Container, Content, Backrgound, Text } from "./styles";
+
+import { useRef, useState, useEffect } from "react";
+import * as Yup from "yup";
+
+import { Form } from "@unform/web";
+import { FiUser, FiLock } from "react-icons/fi";
+
+
+import Input from "../Input";
+import CircularProgress from "../CircularProgress";
+import Button from "../Button";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import api from "../../services/api";
+import {
 
-export default function FormLogin() {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  setToken,
+
+} from "../../services/auth";
+
+import { useSelector, useDispatch } from "react-redux";
+
+
+function SignIn() {
+  const formRef = useRef(null);
   let history = useHistory();
-  return (
-    <Container>
-      <label>Entre para continuar: </label>
-      <InputText
-        type="text"
-        placeholder="Digitar e-mail"
-        onChange={e => setEmail(e.target.value)}
-      />
-      <InputText
-        type="password"
-        placeholder="Digitar senha"
-        onChange={e => setSenha(e.target.value)}
-      />
-      <ButtonSingIn onClick={() => doLogin()}>
-        <label> Entrar</label>
-      </ButtonSingIn>
+  const dispatch = useDispatch();
 
-      <ForgetPwd>Não consegue entrar?</ForgetPwd>
-    </Container>
-  );
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  async function doLogin() {
+  async function handleSubmit(data, { reset }) {
     try {
-      const response = await api.post("rest/usuario/autenticar", {
-        email: email,
-        senha: senha,
+      const schemaSignup = Yup.object().shape({
+        login: Yup.string().required("O usuario é obrigatório"),
+        password: Yup.string().min(6, "No mínimo 6 caracteres"),
       });
-      login(response.retorno)
-      history.push("/config");
-    } catch (response) {
-      throw new Error("Usuario ou senha incorreto " );
+
+      await schemaSignup.validate(data, {
+        abortEarly: false,
+      });
+
+      doLogin(data.login, data.password);
+      formRef.current.setErrors({});
+      reset();
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errorMessages = {};
+
+        err.inner.forEach((error) => {
+          errorMessages[error.path] = error.message;
+        });
+
+        formRef.current.setErrors(errorMessages);
+      }
     }
   }
+
+  async function doLogin(login, senha) {
+    setLoading(true);
+    try {
+      const response = await api.post("login", {
+        login: login,
+        senha: senha,
+      });
+      console.log("RESPONSE " + response);
+      setTimeout(function () {
+        setToken(response.headers.authorization);
+        history.push("/config");
+        setLoading(false);
+      }, 2000);
+
+    } catch (response) {
+      setErrorMessage("Login ou  senha incorretos");
+      setLoading(false);
+    }
+  }
+
+
+  return (
+    <Container>
+
+      <label>Entre para continuar</label>
+
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <Input name="login" icon={FiUser} placeholder="Login" />
+        <Input
+          name="password"
+          type="password"
+          icon={FiLock}
+          placeholder="Senha"
+        />
+        {errorMessage ? <p>{errorMessage}</p> : null}
+        {!loading ? (
+          <Button
+            type="submit"
+            name="Entrar"
+            style={{ background: "#003f76" }}
+          />
+        ) : (
+          <CircularProgress />
+        )}
+      </Form>
+
+
+    </Container>
+  );
 }
+
+export default SignIn;

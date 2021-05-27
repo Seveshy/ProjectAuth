@@ -1,17 +1,19 @@
 import axios from "axios";
-import { getToken } from "./auth";
+import { getToken, logout, isAuthenticated} from "./auth";
 
 
 const api = axios.create({
-  baseURL: "https://sgs.skytef.com.br/",
+  baseURL: "http://localhost:8085/skytef_hub/",
 });
 
 api.interceptors.request.use(
   async (config) => {
     const token = getToken();
+    console.log("CONFIG " + JSON.stringify(config));
     console.log(config);
-    if (!config.url.endsWith("autenticar")) {
-      config.headers.Authorization = `Bearer ${token}`;
+    console.log("TOKEN " + token);
+    if (!config.url.endsWith("login")) {
+      config.headers.authorization = `${token}`;
     }
     return config;
   },
@@ -22,6 +24,13 @@ api.interceptors.request.use(
 
 api.interceptors.response.use((response) => {
   console.log("Resposta " + JSON.stringify(response));
+
+  if (response.status == 403) {
+    logout();
+    isAuthenticated();
+       
+  }
+
   return response;
 }, async  (error)  =>{
   // const originalRequest = error.config;

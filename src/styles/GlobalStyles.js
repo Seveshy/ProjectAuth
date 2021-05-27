@@ -35,7 +35,24 @@ export default createGlobalStyle`
     --azul-skytef: #003f76;
     --gray-font-color:#7B7B7B;
     --gray-light-color :#F4F0F0;
-    
+    --label : #878282;
+    --primary: #edf4ff;
+    --secondary: #15181C;
+    --search: #202327;
+    --white: #fff;
+    --mascara: rgba(255,255,255,0.24); 
+    --border: rgba(0,0,0,0.20); 
+    --gray: #4d4d4d;
+    --outline: #2F3336;
+    --verde-skytef: #009384;
+    --azul-skytef: #003f76;
+    --hover: #e6e6e6;
+    --vermelho-item-list: 	 #ff5c33;
+    --verde-item-list:#53c653;
+    --azul-item-list:#4da6ff;
+    --hover-light-shadow:  rgba(44, 142, 214,0.25);
+    --hover-light-shadow-azul:  rgba(0, 63, 118,0.11);
+    --placeholder: #silver;
   
    
   }

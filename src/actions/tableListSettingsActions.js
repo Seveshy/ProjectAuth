@@ -1,6 +1,8 @@
 import { settingsActions } from "../util/constant";
 import { listTableJson } from "../services/table_json";
 
+import api from"../services/api"
+
 
 export const actions = {
   updateTable: (value) => ({
@@ -13,21 +15,33 @@ export const actions = {
   }),
 };
 
-export function loadTables(dispatch) {
+export async function loadTables(dispatch) {
   const setTable = (newList) => dispatch(actions.updateTable(newList));
-  setTable(listTableJson);
+
+
+  try {
+      const response = await api.get("configuracao/retona-dados");
+      console.log("lista retorno ", JSON.stringify(response))
+      debugger
+      setTable(response.data)
+      return response.data;
+
+    } catch (response) {
+      throw new Error("ERRO" );
+    }
 }
-export  function insertTables(dispatch) {
+export async function updateSingleTable(dispatch, lista, url) {
   //this function must to update tables too
-  // try {
-  //   const response = await api.post("rest/atualiza", {
-  //     listaTabela
-  //   });
-  //   login(response.retorno)
-  //   history.push("/config");
-  // } catch (response) {
-  //   throw new Error("Usuario ou senha incorreto " );
-  // }
+  try {
+    const response = await api.put("configuracao"+url, {
+      lista
+    });
+
+    loadTables(dispatch);
+  
+  } catch (response) {
+    throw new Error("ERRO" );
+  }
 
 
 

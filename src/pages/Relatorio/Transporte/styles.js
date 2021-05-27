@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import { AiFillSetting } from "react-icons/ai";
 
 export const Container = styled.div`
@@ -12,7 +12,7 @@ height: 100%;
     
 `;
 export const Content = styled.div`
-     
+     background-color:var(--white);
 margin: 0px 20px;
      justify-self: center;
      
@@ -22,23 +22,42 @@ export const Register = styled.div`
      padding:20px;
      margin:15px;
 `;
-export const ContentTitle = styled.div`
-     
+export const WrapperData = styled.div`
+
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    input{
+     cursor:pointer;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+`;
+export const WrapperMenu = styled.div`
+     display:flex;
+     padding: 20px;
+     justify-content: space-evenly;
+
+   
+
      
 `;
-export const ContentBody = styled.div`
-     
-     
-`;
-export const EditIcon = styled.div`
-     
+export const WrapperPesquisa = styled.div`
+     display:flex;
      
 `;
 
 
-export const Title = styled.div`
-     
-     
+export const ItemPesquisa = styled.div`
+
+display: flex;
+flex-direction: column;
+margin: 5px;
+font-weight: bold;
 `;
 export const Header = styled.div`
 display:flex;
@@ -59,7 +78,7 @@ const iconCSS = css`
     background-color:var(--mascara);
   }
 `;
-export const CompanyIcon =  styled(AiFillSetting)`
+export const CompanyIcon = styled(AiFillSetting)`
 width: 40px;
 height: 40px;
 color:var(--gray-font-color)
@@ -82,7 +101,7 @@ margin-top:20px;
 
 
 
-export const HeaderDetail   = styled.div`
+export const HeaderDetail = styled.div`
  
  width:100%;
   display:grid;

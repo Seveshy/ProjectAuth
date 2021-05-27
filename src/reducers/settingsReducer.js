@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 
 const settingsReducer = (state = INITIAL_STATE, action) => {
-
+  console.log("REDUCEr "+ JSON.stringify(action.type))
     switch (action.type) {
       case settingsActions.UPDATE_TABLE:
         return {...state, table_settings:action.value};    

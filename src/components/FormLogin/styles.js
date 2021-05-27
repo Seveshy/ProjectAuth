@@ -39,7 +39,7 @@ export const InputText = styled.input`
   }
 `;
 
-export const ButtonSingIn = styled.div`
+export const ButtonSingIn = styled.button`
   background-color: var(--verde-skytef);
   cursor:pointer;
   border-radius: 10px;
