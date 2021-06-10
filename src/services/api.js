@@ -1,10 +1,11 @@
 import axios from "axios";
 import { getToken, logout, isAuthenticated} from "./auth";
-
+import { toast } from 'react-toastify'
 
 const api = axios.create({
   baseURL: "http://localhost:8085/skytef_hub/",
 });
+
 
 api.interceptors.request.use(
   async (config) => {
@@ -18,28 +19,22 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.log('ERROR')
     return Promise.reject(error);
+    
   }
 );
 
-api.interceptors.response.use((response) => {
-  console.log("Resposta " + JSON.stringify(response));
-
-  if (response.status == 403) {
-    logout();
-    isAuthenticated();
-       
-  }
+api.interceptors.response.use((response, error) => {
 
   return response;
-}, async  (error)  =>{
-  // const originalRequest = error.config;
-  // if (error.response.status === 403 && !originalRequest._retry) {
-  //   originalRequest._retry = true;
-  //   const access_token = await refreshAccessToken();            
-  //   axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
-  //   return axiosApiInstance(originalRequest);
-  // }
+
+}, async  (error) => { 
+
+  if (error.response.status === 401 || error.response.status === 403) {
+    toast.error("Seu acesso expirou.");
+    logout();
+  }
   return Promise.reject(error);
 });
 

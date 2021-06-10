@@ -34,7 +34,7 @@ function SignIn() {
     try {
       const schemaSignup = Yup.object().shape({
         login: Yup.string().required("O usuario é obrigatório"),
-        password: Yup.string().min(6, "No mínimo 6 caracteres"),
+        password: Yup.string().min(5, "No mínimo 5 caracteres"),
       });
 
       await schemaSignup.validate(data, {
