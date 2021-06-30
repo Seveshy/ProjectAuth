@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   WrapperPesquisa,
   WrapperData,
-  
   ItemPesquisa
 } from "./styles";
 
@@ -14,7 +13,6 @@ import Modal from "react-modal";
 import "./modal.css";
 
 import { useDispatch, useSelector } from "react-redux";
-
 
 
 import MaterialTable from "material-table";
@@ -145,8 +143,8 @@ export default function Settings() {
         }}
         actions={[
           {
-            icon: 'save',
-            tooltip: 'Save User',
+            icon: 'list',
+            tooltip: 'Detalhes',
             onClick: (event, rowData) => openModal(rowData)
           }
         ]}

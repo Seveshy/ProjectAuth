@@ -6,11 +6,9 @@ import PrivateRoute from "./privateRoutes";
 import Relatorio from "../pages/Relatorio"
 import { isAuthenticated } from "../services/auth";
 
-
-
 const Routes = () => {
-
   const history = useHistory();
+  
   if (
     (history.location.pathname == "/login" ||
       history.location.pathname == "/") &&
@@ -26,8 +24,8 @@ const Routes = () => {
         <Route path="/" exact component={Login} />
         <Route path="/login" component={Login} />
 
-        <PrivateRoute path="/config" component={() => <Settings />} />
-        <PrivateRoute path="/relatorio" component={() => <Relatorio />} />
+        <Route path="/config" component={() => <Settings />} />
+        <Route path="/relatorio" component={() => <Relatorio />} />
       </Switch>
     </BrowserRouter>
   );

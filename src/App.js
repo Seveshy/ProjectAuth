@@ -17,8 +17,8 @@ function App() {
         <GlobalStyles />
         <BrowserRouter>
       <Switch>
-        <Route path="/"  component={Routes } />
-        <Redirect to="/skytefhub" />
+        <Route path="/"  component={Routes} />
+        <Redirect to="/" />
       </Switch>
       <ToastContainer />
     </BrowserRouter>

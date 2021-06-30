@@ -67,7 +67,7 @@ function SignIn() {
       console.log("RESPONSE " + response);
       setTimeout(function () {
         setToken(response.headers.authorization);
-        history.push("/config");
+        history.push("/relatorio");
         setLoading(false);
       }, 2000);
 

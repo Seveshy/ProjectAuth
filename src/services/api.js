@@ -3,7 +3,7 @@ import { getToken, logout, isAuthenticated} from "./auth";
 import { toast } from 'react-toastify'
 
 const api = axios.create({
-  baseURL: "http://localhost:8085/skytef_hub/",
+  baseURL: "https://homologacao.skytef.com.br/HOMOLOGACAO/SkytefHub_back/"
 });
 
 

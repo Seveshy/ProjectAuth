@@ -9,7 +9,7 @@ import Settings from "../pages/Settings";
   
   },
   {
-    name:'Confgurações',
+    name:'Configurações',
     component:<Settings/>,
     url:"/config"
   

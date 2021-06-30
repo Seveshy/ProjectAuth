@@ -38,18 +38,16 @@ export default function Navbar() {
       <FaUserCircle onClick={openModal} color={'var(--white)'} size={30} />
     </Container>
    <Menu>
-   <ul>
+          <ul>
               {MenuItems.map((item, index) => {
                 return (
-                  <Link to={item.url}>
-                  <li
-                    
+                  <li to={item.url}>
+                  <Link
                     key={index}
                     onClick={() => setContent(index)}>
                     {item.name}
-                  </li>
-                
                   </Link>
+                  </li>
                 );
               })}
             </ul>
