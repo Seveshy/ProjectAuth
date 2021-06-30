@@ -24,8 +24,8 @@ const Routes = () => {
         <Route path="/" exact component={Login} />
         <Route path="/login" component={Login} />
 
-        <Route path="/config" component={() => <Settings />} />
-        <Route path="/relatorio" component={() => <Relatorio />} />
+        <PrivateRoute path="/config" component={() => <Settings />} />
+        <PrivateRoute path="/relatorio" component={() => <Relatorio />} />
       </Switch>
     </BrowserRouter>
   );

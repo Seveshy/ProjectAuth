@@ -41,8 +41,9 @@ export default function Navbar() {
           <ul>
               {MenuItems.map((item, index) => {
                 return (
-                  <li to={item.url}>
+                  <li >
                   <Link
+                    to={item.url}
                     key={index}
                     onClick={() => setContent(index)}>
                     {item.name}
