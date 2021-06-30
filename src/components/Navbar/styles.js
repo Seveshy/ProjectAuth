@@ -49,7 +49,11 @@ ul li {
 
   height: 50px;
   place-content: space-evenly;
+
+  a {
+    padding: 12px 45%;
   }
+}
 
   li{
     padding:15px;
